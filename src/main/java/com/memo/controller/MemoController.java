@@ -5,13 +5,11 @@ import com.memo.dto.MemoCreateResponse;
 import com.memo.dto.MemoGetResponse;
 import com.memo.repository.MemoRepository;
 import com.memo.service.MemoService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,4 +36,12 @@ public class MemoController {
     public ResponseEntity<List<MemoGetResponse>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findAll());
     }
+    // 단건조회
+    @GetMapping("/memos/{memoId}")
+    public ResponseEntity<MemoGetResponse> getOne(
+            @PathVariable Long memoId
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.findOne(memoId));
+    }
+
 }

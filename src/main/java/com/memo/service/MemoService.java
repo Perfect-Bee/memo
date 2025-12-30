@@ -48,4 +48,17 @@ public class MemoService {
         }
         return dtos;
     }
+
+    @Transactional(readOnly = true)
+    public MemoGetResponse findOne(Long memoId) {
+        Memo memo = memoRepository.findById(memoId).orElseThrow(
+                () -> new IllegalStateException("없음")
+        );
+        return new MemoGetResponse(
+                memo.getId(),
+                memo.getText(),
+                memo.getCreatedAt(),
+                memo.getModifiedAt()
+        );
+    }
 }
