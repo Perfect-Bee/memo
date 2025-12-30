@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "memos")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Memo extends BaseEntity {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String text;
 
     public Memo(String text) {
