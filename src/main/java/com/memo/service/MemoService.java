@@ -73,4 +73,15 @@ public class MemoService {
                 memo.getModifiedAt()
         );
     }
+
+    @Transactional
+    public void delete(Long memoId) {
+        boolean existence = memoRepository.existsById(memoId);
+        // 존재하지 않으면
+        if (!existence) {
+            throw new IllegalStateException("아님");
+        }
+        // 존재하면
+        memoRepository.deleteById(memoId);
+    }
 }

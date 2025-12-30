@@ -51,4 +51,12 @@ public class MemoController {
         return ResponseEntity.status(HttpStatus.OK).body(memoService.update(memoId, request));
     }
 
+    // 삭제
+    @DeleteMapping("/memos/{memoId}")
+    public void delete(
+            @PathVariable Long memoId
+    ) {
+        memoService.delete(memoId);
+    }
+
 }
