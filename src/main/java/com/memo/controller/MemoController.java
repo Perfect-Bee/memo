@@ -2,14 +2,18 @@ package com.memo.controller;
 
 import com.memo.dto.MemoCreateRequest;
 import com.memo.dto.MemoCreateResponse;
+import com.memo.dto.MemoGetResponse;
 import com.memo.repository.MemoRepository;
 import com.memo.service.MemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,5 +30,12 @@ public class MemoController {
         @RequestBody MemoCreateRequest request
     ){
         return ResponseEntity.status(HttpStatus.CREATED).body(memoService.save(request));
+    }
+
+    //조회
+    @GetMapping("/members")
+    // 전체 -> 리스트
+    public ResponseEntity<List<MemoGetResponse>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.findAll());
     }
 }
