@@ -1,8 +1,6 @@
 package com.memo.controller;
 
-import com.memo.dto.MemoCreateRequest;
-import com.memo.dto.MemoCreateResponse;
-import com.memo.dto.MemoGetResponse;
+import com.memo.dto.*;
 import com.memo.repository.MemoRepository;
 import com.memo.service.MemoService;
 import lombok.Getter;
@@ -42,6 +40,15 @@ public class MemoController {
             @PathVariable Long memoId
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findOne(memoId));
+    }
+
+    // 수정
+    @PutMapping("/memos/{memoId}")
+    public ResponseEntity<MemoUpdateResponse> update(
+            @PathVariable Long memoId,
+            @RequestBody MemoUpdateRequest request
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.update(memoId, request));
     }
 
 }

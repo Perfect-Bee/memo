@@ -18,7 +18,8 @@ public class Memo extends BaseEntity {
     public Memo(String text) {
         this.text = text;
     }
-    public void updateText(String text) {
+
+    public void update(String text) {
         this.text = text;
     }
 }
